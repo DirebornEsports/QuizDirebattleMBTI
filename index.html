@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dota Type Test — Direborn</title>
+<meta name="description" content="Lo tuh pemain Dota yang kayak gimana? 16 soal, hasil tipe lo, hero & role yang cocok, stat gaya main, sampai playstyle lo mirip pro player siapa.">
+<meta name="theme-color" content="#0D0D0B">
+<meta property="og:title" content="Dota Type Test — Direborn">
+<meta property="og:description" content="Lo tuh pemain Dota yang kayak gimana? Tes 3 menit, hasilnya langsung bisa dishare ke Story.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<style>
+:root{
+  --bg:#0D0D0B; --ink:#EDE9DF; --muted:#9C978B; --sub:#C9C4B8; --line:#2A2925; --accent:#FF4D2E;
+  --mono:'JetBrains Mono',ui-monospace,monospace; --display:Anton,Impact,sans-serif; --sans:Inter,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-text-size-adjust:100%}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.app{max-width:440px;margin:0 auto;min-height:100dvh;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.screen{display:none;flex-direction:column;min-height:100dvh}
+.screen.active{display:flex}
+.top{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted)}
+.top b{color:var(--ink)}
+.back{display:flex;align-items:center;gap:6px;background:none;border:0;padding:0;min-height:32px;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink)}
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--accent)}
+.pad{padding:28px 20px 0;display:flex;flex-direction:column;gap:14px}
+h1{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(50px,15vw,64px);line-height:.95;text-transform:uppercase}
+h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(30px,9.5vw,38px);line-height:1.02;text-transform:uppercase}
+.lead{margin:0;font-size:15px;line-height:1.5;color:var(--sub)}
+.friend{margin:0 20px;padding:12px 14px;border:1px solid var(--accent);font-size:14px;line-height:1.4}
+.friend b{color:var(--accent)}
+.index{margin:24px 20px 0;border-top:1px solid var(--line)}
+.index div{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.index span{font-family:var(--mono);color:var(--muted);width:24px}
+.grow{flex-grow:1}
+.foot{padding:20px;display:flex;flex-direction:column;gap:12px}
+.cta{display:flex;justify-content:space-between;align-items:center;width:100%;height:60px;padding:0 20px;border:0;background:var(--accent);color:var(--bg);cursor:pointer;font-family:var(--display);font-size:24px;letter-spacing:.02em;text-transform:uppercase}
+.cta.center{justify-content:center;gap:10px;height:56px;font-size:22px}
+.note{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center}
+.progress{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:3px;padding:14px 20px 0}
+.progress i{height:4px;background:var(--line)}
+.progress i.on{background:var(--accent)}
+.opts{padding:24px 20px 0;display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:flex-start;gap:14px;width:100%;min-height:64px;padding:14px 16px;text-align:left;cursor:pointer;font-size:15px;line-height:1.4;background:transparent;border:1px solid var(--line)}
+.opt .k{font-family:var(--mono);font-weight:700;font-size:13px;padding-top:2px}
+.opt:hover{border-color:var(--muted)}
+.opt.on{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.ghost{flex:1;display:flex;align-items:center;justify-content:center;height:48px;background:transparent;border:1px solid var(--line);cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink);text-decoration:none}
+.ghost:disabled{opacity:.35;cursor:default}
+.row{display:flex;gap:10px}
+.qfoot{padding:20px;border-top:1px solid var(--line)}
+.rtitle{padding:16px 20px 0;display:flex;flex-direction:column;gap:4px}
+.rtitle .big{font-family:var(--display);font-size:36px;line-height:1;text-transform:uppercase}
+.preview{display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px 0}
+.preview img{width:min(60vw,240px);aspect-ratio:9/16;border:1px solid var(--line);display:block;background:#151513}
+.seg{display:flex;border:1px solid var(--line)}
+.seg button{min-width:88px;height:40px;background:transparent;border:0;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.shareLabel{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
+.sgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.sbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:72px;background:transparent;border:1px solid var(--line);cursor:pointer;font-size:11px;font-weight:500}
+.sbtn:hover,.ghost:hover:not(:disabled){border-color:var(--muted)}
+#toast{position:fixed;left:50%;top:20px;transform:translate(-50%,-140%);width:min(400px,calc(100% - 32px));display:flex;gap:10px;align-items:center;padding:14px 16px;background:var(--ink);color:var(--bg);font-size:14px;font-weight:500;transition:transform .25s ease;z-index:10}
+#toast.show{transform:translate(-50%,0)}
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;flex-grow:1;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--muted)}
+.bar{width:180px;height:4px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:4px;width:40%;background:var(--accent);animation:slide 1s ease-in-out infinite}
+@keyframes slide{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+@media (prefers-reduced-motion:reduce){.bar i{animation:none;width:100%}#toast{transition:none}}
+</style>
+</head>
+<body>
+<main class="app">
+
+  <section id="s-landing" class="screen active" aria-labelledby="h-landing">
+    <div class="top"><b>DIREBORN</b><span>DOTA TYPE TEST / V1</span></div>
+    <div class="pad">
+      <span class="tag">16 TIPE · 16 SOAL · ±3 MENIT</span>
+      <h1 id="h-landing">Lo tuh pemain Dota yang kayak gimana?</h1>
+      <p class="lead">Jawab jujur, jangan jawab versi lo pas lagi winstreak. Hasilnya: tipe lo, hero yang cocok, role, gaya main, sampai playstyle lo mirip pro player siapa.</p>
+    </div>
+    <p id="friend" class="friend" hidden></p>
+    <div class="index">
+      <div><span>01</span>Tipe &amp; julukan lo</div>
+      <div><span>02</span>Hero &amp; role yang cocok</div>
+      <div><span>03</span>Radar 6 stat gaya main</div>
+      <div><span>04</span>Mirip pro player siapa</div>
+    </div>
+    <div class="grow"></div>
+    <div class="foot">
+      <button class="cta" id="start" type="button"><span>Mulai tes</span>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+      <span class="note">Hasil bisa langsung disimpan &amp; dishare ke IG Story</span>
+    </div>
+  </section>
+
+  <section id="s-quiz" class="screen" aria-live="polite">
+    <div class="top">
+      <button class="back" id="qback" type="button" aria-label="Kembali">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>KEMBALI</span></button>
+      <span>SOAL <b id="qn">01</b> / 16</span>
+    </div>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+    <div class="pad" style="gap:12px">
+      <span class="tag" id="qtag"></span>
+      <h2 id="qtext"></h2>
+    </div>
+    <div class="opts" id="opts"></div>
+    <div class="grow"></div>
+    <div class="qfoot row"><button class="ghost" id="qprev" type="button">SEBELUMNYA</button></div>
+  </section>
+
+  <section id="s-loading" class="screen">
+    <div class="top"><b>DIREBORN</b><span>DOTA TYPE TEST</span></div>
+    <div class="loading"><div class="bar"><i></i></div><span>NGITUNG HASIL LO…</span></div>
+  </section>
+
+  <section id="s-result" class="screen">
+    <div class="top"><b>DIREBORN</b><span>HASIL LO UDAH JADI</span></div>
+    <div class="rtitle">
+      <span class="tag">TIPE LO</span>
+      <span class="big" id="rname"></span>
+    </div>
+    <div class="preview">
+      <img id="rimg" alt="Kartu hasil tes ukuran Instagram Story">
+      <div class="seg" role="group" aria-label="Tema kartu">
+        <button type="button" data-theme="dark" aria-pressed="true">GELAP</button>
+        <button type="button" data-theme="light" aria-pressed="false">TERANG</button>
+      </div>
+    </div>
+    <div class="grow"></div>
+    <div class="foot">
+      <button class="cta center" id="save" type="button">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3v12M6 10l6 6 6-6M4 20h16"/></svg><span>Simpan ke galeri</span></button>
+      <span class="shareLabel">ATAU SHARE LANGSUNG KE</span>
+      <div class="sgrid">
+        <button class="sbtn" type="button" data-share="ig"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg><span>IG Story</span></button>
+        <button class="sbtn" type="button" data-share="wa"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20l1.5-4.5A8 8 0 1 1 9 19z"/></svg><span>WhatsApp</span></button>
+        <button class="sbtn" type="button" data-share="x"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg><span>X</span></button>
+        <button class="sbtn" type="button" data-share="more"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg><span>Lainnya</span></button>
+      </div>
+      <div class="row">
+        <button class="ghost" id="copy" type="button" style="height:44px;font-size:11px">SALIN LINK</button>
+        <button class="ghost" id="retry" type="button" style="height:44px;font-size:11px">ULANG TES</button>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+<canvas id="cv" width="1080" height="1920" hidden></canvas>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- DATA ---------- */
+var STAT_LABELS = ["Agresi","Farming","Teamfight","Map awareness","Anti-tilt","Shotcalling"];
+
+var TYPES = {
+  ISTJ:{name:"The Farm Machine",role:"Pos 1 · Carry",quote:"Timer lo lebih rapi dari jadwal kuliah. Pola farm lo bisa dijadiin tutorial.",style:"Farm disiplin, keluar pas item udah jadi",heroes:["Anti-Mage","Medusa","Terrorblade"],pro:"Ame",proRole:"Carry",stats:[38,96,62,70,80,30]},
+  ISTP:{name:"The Mechanic",role:"Pos 1 · Carry",quote:"Ngomong dikit, micro lo yang ngomong.",style:"Mekanik tajam, eksekusi bersih di fight",heroes:["Morphling","Faceless Void","Phantom Lancer"],pro:"Yatoro",proRole:"Carry",stats:[72,85,78,64,74,28]},
+  ESTP:{name:"The Daredevil",role:"Pos 1 · Carry",quote:"Item belum jadi? Bodo amat, gas dulu.",style:"Agresif dari menit awal, snowball lewat kill",heroes:["Slark","Troll Warlord","Juggernaut"],pro:"Arteezy",proRole:"Carry",stats:[92,70,74,52,40,46]},
+  INTJ:{name:"The Mastermind",role:"Pos 2 · Mid",quote:"Lo udah tau musuh bakal rotate ke mana sebelum mereka sendiri tau.",style:"Kalkulatif, timing rune & power spike rapi",heroes:["Invoker","Storm Spirit","Tinker"],pro:"Miracle-",proRole:"Mid / Carry",stats:[64,78,70,92,72,60]},
+  ENTP:{name:"The Wildcard",role:"Pos 2 · Mid",quote:"Build lo bikin tim panik, tapi entah kenapa menang.",style:"Kreatif, build nyeleneh, susah ditebak",heroes:["Pangolier","Void Spirit","Monkey King"],pro:"Topson",proRole:"Mid",stats:[80,58,76,74,55,62]},
+  ESFP:{name:"The Showman",role:"Pos 2 · Mid",quote:"Highlight reel lo lebih panjang dari match history lo.",style:"Main buat momen, gank tiap rune",heroes:["Queen of Pain","Ember Spirit","Puck"],pro:"SumaiL",proRole:"Mid",stats:[90,60,82,58,45,50]},
+  ENTJ:{name:"The Shotcaller",role:"Pos 3 · Offlane",quote:"Lo yang manggil smoke, lo juga yang ngamuk kalau nggak ada yang ikut.",style:"Inisiator, buka fight duluan, tempo cepat",heroes:["Mars","Centaur Warrunner","Beastmaster"],pro:"Collapse",proRole:"Offlaner",stats:[88,42,91,76,35,94]},
+  ESTJ:{name:"The Commander",role:"Pos 3 · Offlane",quote:"Lane lo selalu menang, dan lo pastiin semua orang tau.",style:"Dominan di lane, disiplin ngejar objektif",heroes:["Axe","Underlord","Timbersaw"],pro:"Ceb",proRole:"Offlaner",stats:[80,55,84,72,58,88]},
+  INTP:{name:"The Theorycrafter",role:"Pos 3 · Offlane",quote:"Lo nge-pick hero yang orang lain lupa ada di game ini.",style:"Eksperimental, main space & tempo",heroes:["Dark Seer","Batrider","Brewmaster"],pro:"33",proRole:"Offlaner",stats:[62,60,80,82,70,58]},
+  ENFP:{name:"The Playmaker",role:"Pos 4 · Soft Support",quote:"Lo yang mulai fight, lo juga yang paling ribut di voice.",style:"Roaming, bikin peluang di seluruh map",heroes:["Earth Spirit","Tusk","Hoodwink"],pro:"Mira",proRole:"Soft support",stats:[84,35,86,80,52,70]},
+  ESFJ:{name:"The Hype Man",role:"Pos 4 · Soft Support",quote:"Tim lagi kalah 20 kill, lo masih bilang 'masih bisa, guys'.",style:"Jaga mental tim, setup pickoff",heroes:["Rubick","Clockwerk","Snapfire"],pro:"Cr1t-",proRole:"Soft support",stats:[70,30,84,72,88,82]},
+  ISFP:{name:"The Free Spirit",role:"Pos 4 · Soft Support",quote:"Lo ngilang dari minimap, tiba-tiba musuh mati.",style:"Roamer independen, gerak sesuai feeling",heroes:["Mirana","Spirit Breaker","Nyx Assassin"],pro:"Insania",proRole:"Soft support",stats:[76,32,74,84,66,40]},
+  INFP:{name:"The Guardian",role:"Pos 5 · Hard Support",quote:"Nggak pernah dapet MVP, tapi carry lo hidup karena lo. Ward lo lebih banyak dari chat lo.",style:"Sabar, protektif, jago baca momen save",heroes:["Oracle","Dazzle","Shadow Demon"],pro:"Miposhka",proRole:"Hard support",stats:[31,12,79,94,86,40]},
+  INFJ:{name:"The Strategist",role:"Pos 5 · Hard Support",quote:"Draft lo udah menang sebelum creep pertama spawn.",style:"Baca draft & tempo, main dari balik layar",heroes:["Io","Lion","Disruptor"],pro:"KuroKy",proRole:"Hard support",stats:[40,15,78,90,80,90]},
+  ENFJ:{name:"The Captain",role:"Pos 5 · Hard Support",quote:"Lima orang random di pub, lo bikin jadi satu tim.",style:"Pemimpin, atur rotasi & smoke",heroes:["Crystal Maiden","Treant Protector","Warlock"],pro:"Puppey",proRole:"Hard support",stats:[55,18,82,86,78,96]},
+  ISFJ:{name:"The Babysitter",role:"Pos 5 · Hard Support",quote:"Carry lo nggak pernah ngerasain lane susah, karena ada lo.",style:"Jaga lane, stack, ward, sabar",heroes:["Undying","Witch Doctor","Lich"],pro:"Saksa",proRole:"Support",stats:[42,20,74,82,90,55]}
+};
+
+/* value > 0 leans to first letter of dim (E, S, T, J) */
+var QUESTIONS = [
+  {d:"EI",tag:"VOICE CHAT · MENIT 00:00",q:"Awal game, di voice chat lo biasanya…",o:[["Gw yang paling banyak ngomong, ngatur lane & timing",2],["Ngobrol santai, info penting doang",1],["Diem, ping aja udah cukup",-1],["Mute semua. Fokus.",-2]]},
+  {d:"SN",tag:"BUILD ITEM",q:"Build item lo biasanya…",o:[["Ikutin build pro / guide terbaru",2],["Standar, sesekali adaptasi",1],["Sering improvisasi tergantung musuh",-1],["Build sendiri. Meta itu saran, bukan aturan.",-2]]},
+  {d:"TF",tag:"SITUASI · TEAMMATE FEEDING",q:"Teammate lo udah mati 6 kali sebelum menit 10. Lo…",o:[["Kasih tau kesalahannya, langsung & jelas",2],["Saranin build atau posisi yang lebih aman",1],["Tanya dia oke nggak, jangan sampe tilt",-1],["Bela dia di chat. Mental tim nomor satu.",-2]]},
+  {d:"JP",tag:"PRE-GAME",q:"Sebelum game mulai, lo…",o:[["Udah punya rencana lane, timing & item",2],["Ada gambaran kasar",1],["Liat draft dulu, nanti dipikirin",-1],["Rencana? Gw main ngalir aja.",-2]]},
+  {d:"EI",tag:"PUSH RANK",q:"Pilihan lo kalau mau push rank…",o:[["Party 5 bareng squad",2],["Duo sama temen yang klop",1],["Solo, kadang ajak orang",-1],["Solo queue. Nasib gw di tangan gw.",-2]]},
+  {d:"SN",tag:"PATCH BARU",q:"Patch baru keluar. Lo…",o:[["Baca patch notes detail, angka per angka",2],["Tunggu liat hero mana yang naik di pub",1],["Langsung nyobain combo aneh yang kepikiran",-1],["Bikin teori meta baru sebelum orang lain sadar",-2]]},
+  {d:"TF",tag:"SITUASI · MENIT 24:10",q:"Mau ambil fight atau nggak, lo mutusinnya dari…",o:[["Itung net worth & cooldown dulu",2],["Liat spike item tim",1],["Feeling: tim lagi panas atau nggak",-1],["Kalau temen udah masuk, gw ikut. Titik.",-2]]},
+  {d:"JP",tag:"ROSHAN",q:"Soal timer Roshan…",o:[["Gw catat tiap kali, sampe Aegis expire",2],["Inget kira-kira",1],["Tanya tim pas butuh aja",-1],["Rosh? Kapan terakhir mati ya?",-2]]},
+  {d:"EI",tag:"SITUASI · MENIT 12:40",q:"Tim ketinggalan 3 kill dan semua diem. Lo…",o:[["Langsung ambil alih, mulai calling",2],["Kasih semangat dikit",1],["Fokus benerin game lo sendiri",-1],["Ikutan diem, main aja",-2]]},
+  {d:"SN",tag:"LANING PHASE",q:"Pas laning, yang paling lo perhatiin…",o:[["Last hit, deny, creep aggro: detail kecil",2],["Posisi & HP musuh di lane",1],["Kapan mid bakal rotate",-1],["Gambaran besar: siapa yang menang di menit 20",-2]]},
+  {d:"TF",tag:"POST-GAME",q:"Abis kalah, yang lo lakuin…",o:[["Buka replay, cari kesalahan",2],["Cek stat & grafik net worth",1],["Curhat bareng tim",-1],["Ngehibur tim, 'next game pasti menang'",-2]]},
+  {d:"JP",tag:"SITUASI · SMOKE GAGAL",q:"Rencana smoke tim gagal total. Lo…",o:[["Regroup, balik ke rencana awal",2],["Susun ulang rencana, cepet",1],["Langsung cari peluang lain di map",-1],["Chaos adalah rencana gw",-2]]},
+  {d:"EI",tag:"ABIS MENANG",q:"Abis menang game yang susah, lo…",o:[["Teriak di voice, spam 'GG WP'",2],["Ajak satu game lagi bareng",1],["Senyum dikit, lanjut queue",-1],["Tutup game. Recharge dulu.",-2]]},
+  {d:"SN",tag:"HERO POOL",q:"Hero pool lo…",o:[["Sedikit tapi dalem, 3–4 hero andalan",2],["Hero comfort per role",1],["Lumayan luas, suka ganti-ganti",-1],["Suka nyoba hero yang jarang di-pick",-2]]},
+  {d:"TF",tag:"KEPUASAN",q:"Lo paling puas kalau…",o:[["Farm & objektif efisien maksimal",2],["Rencana tim jalan sesuai hitungan",1],["Ada save epik buat teammate",-1],["Semua orang di tim seneng, menang atau kalah",-2]]},
+  {d:"JP",tag:"MID GAME",q:"Gaya lo pas mid game…",o:[["Rute farm tetap, efisien tiap menit",2],["Pola standar, sesekali ganti",1],["Ikut ke mana peluang ada",-1],["Farm? Gw lebih suka nyari fight",-2]]}
+];
+
+var THEMES = {
+  dark:{bg:"#0D0D0B",grid:"#1C1B18",ink:"#EDE9DF",muted:"#9C978B",sub:"#C9C4B8",line:"#2A2925",ring:"#3A3833",accent:"#FF4D2E",blockBg:"#FF4D2E",blockInk:"#0D0D0B",blockMuted:"#0D0D0B"},
+  light:{bg:"#EDE9DF",grid:"#DDD8CC",ink:"#0D0D0B",muted:"#5E5A52",sub:"#3E3B35",line:"#CFC9BC",ring:"#A9A396",accent:"#C8361C",blockBg:"#0D0D0B",blockInk:"#EDE9DF",blockMuted:"#9C978B"}
+};
+
+/* ---------- STATE ---------- */
+var answers = [];      // index per question -> option index (in original order)
+var order = [];        // shuffled option order per question
+var cur = 0;
+var result = null;     // type code
+var theme = "dark";
+var cardNo = "";
+var blobURL = null;
+var cardBlob = null;
+
+var $ = function(id){ return document.getElementById(id); };
+function show(id){
+  var s = document.querySelectorAll(".screen");
+  for (var i = 0; i < s.length; i++) s[i].classList.toggle("active", s[i].id === id);
+  window.scrollTo(0, 0);
+}
+function pad2(n){ return (n < 10 ? "0" : "") + n; }
+function shuffle(a){ a = a.slice(); for (var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+var toastTimer;
+function toast(msg){
+  var t = $("toast");
+  t.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+  var s = document.createElement("span"); s.textContent = msg; t.appendChild(s);
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2800);
+}
+
+/* ---------- LANDING (link dari temen) ---------- */
+(function(){
+  var t = (new URLSearchParams(location.search).get("t") || "").toUpperCase();
+  if (TYPES[t]){
+    var f = $("friend");
+    f.innerHTML = "Temen lo dapet <b></b>. Lo tipe apa?";
+    f.querySelector("b").textContent = t + " · " + TYPES[t].name;
+    f.hidden = false;
+  }
+})();
+
+/* ---------- QUIZ ---------- */
+function startQuiz(){
+  answers = []; cur = 0;
+  order = QUESTIONS.map(function(q){ return shuffle([0,1,2,3]); });
+  var p = $("progress"); p.innerHTML = "";
+  for (var i = 0; i < QUESTIONS.length; i++) p.appendChild(document.createElement("i"));
+  renderQ(); show("s-quiz");
+}
+function renderQ(){
+  var q = QUESTIONS[cur];
+  $("qn").textContent = pad2(cur + 1);
+  $("qtag").textContent = q.tag;
+  $("qtext").textContent = q.q;
+  var bars = $("progress").children;
+  for (var i = 0; i < bars.length; i++) bars[i].classList.toggle("on", i <= cur);
+  var box = $("opts"); box.innerHTML = "";
+  order[cur].forEach(function(oi, pos){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "opt" + (answers[cur] === oi ? " on" : "");
+    var k = document.createElement("span"); k.className = "k"; k.textContent = "ABCD"[pos];
+    var tx = document.createElement("span"); tx.textContent = q.o[oi][0];
+    b.appendChild(k); b.appendChild(tx);
+    b.addEventListener("click", function(){ pick(oi, b); });
+    box.appendChild(b);
+  });
+  $("qprev").disabled = cur === 0;
+}
+var advancing = false;
+function pick(oi, btn){
+  if (advancing) return;
+  answers[cur] = oi;
+  var all = $("opts").children; for (var i = 0; i < all.length; i++) all[i].classList.remove("on");
+  btn.classList.add("on");
+  advancing = true;
+  setTimeout(function(){
+    advancing = false;
+    if (cur < QUESTIONS.length - 1){ cur++; renderQ(); }
+    else finish();
+  }, 220);
+}
+function finish(){
+  var sc = {EI:0,SN:0,TF:0,JP:0};
+  QUESTIONS.forEach(function(q, i){ sc[q.d] += q.o[answers[i]][1]; });
+  result = (sc.EI >= 0 ? "E" : "I") + (sc.SN >= 0 ? "S" : "N") + (sc.TF >= 0 ? "T" : "F") + (sc.JP >= 0 ? "J" : "P");
+  cardNo = String(Math.floor(Math.random() * 9000) + 1000);
+  theme = "dark"; syncSeg();
+  show("s-loading");
+  var minWait = new Promise(function(r){ setTimeout(r, 900); });
+  Promise.all([render(), minWait]).then(function(){
+    $("rname").textContent = result + " · " + TYPES[result].name;
+    show("s-result");
+  });
+}
+
+/* ---------- CARD RENDER (canvas 1080x1920) ---------- */
+var fontsReady = null;
+function loadFonts(){
+  if (!fontsReady){
+    var list = ['400 240px Anton','700 26px "JetBrains Mono"','400 24px "JetBrains Mono"','400 34px Inter','500 30px Inter','700 28px Inter'];
+    fontsReady = document.fonts ? Promise.all(list.map(function(f){ return document.fonts.load(f); })).catch(function(){}) : Promise.resolve();
+  }
+  return fontsReady;
+}
+function wrap(ctx, text, x, y, maxW, lh, maxLines){
+  var words = text.split(" "), line = "", lines = [];
+  for (var i = 0; i < words.length; i++){
+    var test = line ? line + " " + words[i] : words[i];
+    if (ctx.measureText(test).width > maxW && line){ lines.push(line); line = words[i]; }
+    else line = test;
+  }
+  if (line) lines.push(line);
+  if (maxLines && lines.length > maxLines){ lines = lines.slice(0, maxLines); lines[maxLines - 1] += "…"; }
+  lines.forEach(function(l, i){ ctx.fillText(l, x, y + i * lh); });
+  return lines.length;
+}
+function fit(ctx, text, weight, family, size, maxW, min){
+  ctx.font = weight + " " + size + "px " + family;
+  while (ctx.measureText(text).width > maxW && size > min){ size -= 2; ctx.font = weight + " " + size + "px " + family; }
+  return size;
+}
+var ANTON = 'Anton, Impact, sans-serif', MONO = '"JetBrains Mono", monospace', INTER = 'Inter, sans-serif';
+
+function drawCard(ctx, code, th, host){
+  var T = TYPES[code], C = THEMES[th], W = 1080, H = 1920, X = 72, R = W - 72;
+  ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = C.grid;
+  for (var gx = 0; gx <= W; gx += 120) ctx.fillRect(gx, 0, 1, H);
+  for (var gy = 0; gy <= H; gy += 120) ctx.fillRect(0, gy, W, 1);
+
+  // header
+  ctx.font = "700 26px " + MONO; ctx.fillStyle = C.ink;
+  ctx.fillText("DIREBORN / DOTA TYPE TEST", X, 200);
+  ctx.textAlign = "right"; ctx.font = "400 26px " + MONO; ctx.fillStyle = C.muted;
+  ctx.fillText("NO. " + cardNo, R, 200); ctx.textAlign = "left";
+  ctx.fillStyle = C.ink; ctx.fillRect(X, 222, R - X, 2);
+
+  // type
+  ctx.fillStyle = C.accent; ctx.font = "400 28px " + MONO; ctx.fillText("TIPE LO", X, 282);
+  ctx.font = "400 240px " + ANTON; ctx.fillText(code, X - 4, 500);
+  ctx.fillStyle = C.ink; fit(ctx, T.name.toUpperCase(), "400", ANTON, 92, R - X, 60);
+  ctx.fillText(T.name.toUpperCase(), X, 600);
+  ctx.fillStyle = C.sub; ctx.font = "400 34px " + INTER;
+  wrap(ctx, T.quote, X, 660, 900, 46, 2);
+
+  // stats
+  ctx.fillStyle = C.muted; ctx.font = "400 24px " + MONO; ctx.fillText("STAT GAYA MAIN", X, 772);
+  var cx = X + 200, cy = 990, RAD = 150;
+  function pt(i, r){ var a = Math.PI / 3 * i; return [cx + r * Math.sin(a), cy - r * Math.cos(a)]; }
+  function hex(k){ ctx.beginPath(); for (var i = 0; i < 6; i++){ var p = pt(i, RAD * k); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); } ctx.closePath(); }
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = C.line; hex(1/3); ctx.stroke(); hex(2/3); ctx.stroke();
+  ctx.strokeStyle = C.ring; hex(1); ctx.stroke();
+  ctx.strokeStyle = C.line; ctx.beginPath();
+  for (var i = 0; i < 6; i++){ var p = pt(i, RAD); ctx.moveTo(cx, cy); ctx.lineTo(p[0], p[1]); }
+  ctx.stroke();
+  ctx.beginPath();
+  T.stats.forEach(function(v, i){ var p = pt(i, RAD * v / 100); i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); });
+  ctx.closePath();
+  ctx.globalAlpha = th === "dark" ? 0.28 : 0.22; ctx.fillStyle = C.accent; ctx.fill(); ctx.globalAlpha = 1;
+  ctx.lineWidth = 5; ctx.lineJoin = "round"; ctx.strokeStyle = C.accent; ctx.stroke();
+  ctx.fillStyle = C.ink; ctx.font = "700 24px " + MONO; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  for (var j = 0; j < 6; j++){ var lp = pt(j, RAD + 28); ctx.fillText(pad2(j + 1), lp[0], lp[1]); }
+  ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+
+  var lx = X + 440, rowH = 60, ly = cy - rowH * 3;
+  T.stats.forEach(function(v, i){
+    var y = ly + i * rowH;
+    ctx.fillStyle = C.line; ctx.fillRect(lx, y, R - lx, 1);
+    ctx.fillStyle = C.muted; ctx.font = "400 22px " + MONO; ctx.fillText(pad2(i + 1), lx, y + 40);
+    ctx.fillStyle = C.ink; ctx.font = "500 30px " + INTER; ctx.fillText(STAT_LABELS[i], lx + 56, y + 41);
+    ctx.textAlign = "right"; ctx.font = "700 32px " + MONO; ctx.fillStyle = v >= 75 ? C.accent : C.ink;
+    ctx.fillText(String(v), R, y + 42); ctx.textAlign = "left";
+  });
+
+  // role / style
+  var ry = 1200, mid = X + (R - X) / 2;
+  ctx.fillStyle = C.line; ctx.fillRect(X, ry, R - X, 1); ctx.fillRect(X, ry + 134, R - X, 1); ctx.fillRect(mid, ry, 1, 134);
+  ctx.fillStyle = C.muted; ctx.font = "400 24px " + MONO;
+  ctx.fillText("ROLE COCOK", X, ry + 44); ctx.fillText("GAYA MAIN", mid + 28, ry + 44);
+  ctx.fillStyle = C.ink; fit(ctx, T.role.toUpperCase(), "400", ANTON, 58, mid - X - 24, 36);
+  ctx.fillText(T.role.toUpperCase(), X, ry + 112);
+  ctx.font = "500 30px " + INTER; wrap(ctx, T.style, mid + 28, ry + 84, R - mid - 28, 38, 2);
+
+  // heroes
+  var hy = 1372;
+  ctx.fillStyle = C.muted; ctx.font = "400 24px " + MONO; ctx.fillText("HERO COCOK", X, hy);
+  var tw = (R - X - 36) / 3, ty = hy + 22, thh = 96;
+  T.heroes.forEach(function(h, i){
+    var tx = X + i * (tw + 18);
+    ctx.strokeStyle = C.ring; ctx.lineWidth = 2; ctx.strokeRect(tx + 1, ty + 1, tw - 2, thh - 2);
+    ctx.fillStyle = C.muted; ctx.font = "400 18px " + MONO; ctx.fillText("H" + (i + 1), tx + 16, ty + 30);
+    ctx.fillStyle = C.ink; fit(ctx, h.toUpperCase(), "400", ANTON, 36, tw - 32, 24);
+    ctx.fillText(h.toUpperCase(), tx + 16, ty + 78);
+  });
+
+  // pro block
+  var by = 1520, bh = 132;
+  ctx.fillStyle = C.blockBg; ctx.fillRect(X, by, R - X, bh);
+  ctx.fillStyle = C.blockMuted; ctx.font = "400 24px " + MONO; ctx.fillText("PLAYSTYLE LO MIRIP", X + 32, by + 44);
+  ctx.fillStyle = C.blockInk; ctx.font = "400 72px " + ANTON; ctx.fillText(T.pro, X + 32, by + 116);
+  ctx.textAlign = "right"; ctx.font = "700 28px " + INTER; ctx.fillText(T.proRole, R - 32, by + 80); ctx.textAlign = "left";
+
+  // footer
+  ctx.fillStyle = C.muted; ctx.font = "400 26px " + MONO; ctx.fillText("Tes tipe lo →", X, 1712);
+  var w = ctx.measureText("Tes tipe lo → ").width; ctx.fillStyle = C.ink; ctx.fillText(host, X + w, 1712);
+  ctx.textAlign = "right"; ctx.font = "700 26px " + MONO; ctx.fillText("DIREBORN", R, 1712); ctx.textAlign = "left";
+}
+
+function render(){
+  return loadFonts().then(function(){
+    var cv = $("cv"), ctx = cv.getContext("2d");
+    drawCard(ctx, result, theme, location.host || "direborn");
+    return new Promise(function(res){
+      cv.toBlob(function(b){
+        cardBlob = b;
+        if (blobURL) URL.revokeObjectURL(blobURL);
+        blobURL = URL.createObjectURL(b);
+        $("rimg").src = blobURL;
+        res();
+      }, "image/png");
+    });
+  });
+}
+
+/* ---------- RESULT ACTIONS ---------- */
+function shareURL(){ return location.origin + location.pathname + "?t=" + result; }
+function shareText(){ return "Gw " + result + " · " + TYPES[result].name + " di Dota Type Test by Direborn. Lo tipe apa?"; }
+function fileName(){ return "dota-type-" + result.toLowerCase() + ".png"; }
+function cardFile(){ return new File([cardBlob], fileName(), {type: "image/png"}); }
+function canShareFile(){ try { return !!(navigator.canShare && navigator.canShare({files: [cardFile()]})); } catch(e){ return false; } }
+var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+function download(){
+  var a = document.createElement("a"); a.href = blobURL; a.download = fileName();
+  document.body.appendChild(a); a.click(); a.remove();
+}
+function shareFile(extra){
+  var data = {files: [cardFile()]};
+  if (extra) { data.text = shareText() + " " + shareURL(); }
+  return navigator.share(data);
+}
+function ignoreAbort(e){ if (e && e.name !== "AbortError") toast("Gagal share. Coba simpan gambar dulu ya."); }
+
+$("save").addEventListener("click", function(){
+  if (isIOS && canShareFile()){
+    shareFile(false).then(function(){}, ignoreAbort);
+    toast("Pilih 'Simpan Gambar' / 'Save Image' di menu share.");
+  } else {
+    download(); toast("Kartu tersimpan. Tinggal upload ke Story!");
+  }
+});
+Array.prototype.forEach.call(document.querySelectorAll("[data-share]"), function(b){
+  b.addEventListener("click", function(){
+    var k = b.getAttribute("data-share");
+    if (k === "x"){
+      window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText()) + "&url=" + encodeURIComponent(shareURL()), "_blank", "noopener");
+      return;
+    }
+    if (canShareFile()){
+      shareFile(k !== "ig").then(function(){}, ignoreAbort);
+      return;
+    }
+    if (k === "wa"){
+      window.open("https://wa.me/?text=" + encodeURIComponent(shareText() + " " + shareURL()), "_blank", "noopener");
+    } else if (k === "ig"){
+      download(); toast("Gambar tersimpan. Buka IG → Story → pilih dari galeri.");
+    } else if (navigator.share){
+      navigator.share({title: "Dota Type Test", text: shareText(), url: shareURL()}).then(function(){}, ignoreAbort);
+    } else {
+      copyLink();
+    }
+  });
+});
+function copyLink(){
+  var u = shareURL();
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(u).then(function(){ toast("Link tersalin!"); }, function(){ prompt("Salin link ini:", u); });
+  } else prompt("Salin link ini:", u);
+}
+$("copy").addEventListener("click", copyLink);
+$("retry").addEventListener("click", function(){ show("s-landing"); });
+
+function syncSeg(){
+  Array.prototype.forEach.call(document.querySelectorAll(".seg button"), function(b){
+    b.setAttribute("aria-pressed", b.getAttribute("data-theme") === theme ? "true" : "false");
+  });
+}
+Array.prototype.forEach.call(document.querySelectorAll(".seg button"), function(b){
+  b.addEventListener("click", function(){
+    var t = b.getAttribute("data-theme"); if (t === theme) return;
+    theme = t; syncSeg(); render();
+  });
+});
+
+/* ---------- NAV ---------- */
+$("start").addEventListener("click", startQuiz);
+$("qprev").addEventListener("click", function(){ if (cur > 0){ cur--; renderQ(); } });
+$("qback").addEventListener("click", function(){ if (cur > 0){ cur--; renderQ(); } else show("s-landing"); });
+loadFonts();
+})();
+</script>
+</body>
+</html>
