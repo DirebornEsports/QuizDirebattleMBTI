@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dota Type Test — Direborn</title>
-<meta name="description" content="Lo tuh pemain Dota yang kayak gimana? 16 soal, hasil tipe lo, hero & role yang cocok, stat gaya main, sampai playstyle lo mirip pro player siapa.">
+<meta name="description" content="Lo tuh pemain Dota yang kayak gimana? 8 soal, hasil tipe lo, hero & role yang cocok, stat gaya main, sampai playstyle lo mirip pro player siapa.">
 <meta name="theme-color" content="#0D0D0B">
 <meta property="og:title" content="Dota Type Test — Direborn">
-<meta property="og:description" content="Lo tuh pemain Dota yang kayak gimana? Tes 3 menit, hasilnya langsung bisa dishare ke Story.">
+<meta property="og:description" content="Lo tuh pemain Dota yang kayak gimana? Tes 1 menit, hasilnya langsung bisa dishare ke Story.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +42,7 @@ h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(30px,9.5v
 .cta{display:flex;justify-content:space-between;align-items:center;width:100%;height:60px;padding:0 20px;border:0;background:var(--accent);color:var(--bg);cursor:pointer;font-family:var(--display);font-size:24px;letter-spacing:.02em;text-transform:uppercase}
 .cta.center{justify-content:center;gap:10px;height:56px;font-size:22px}
 .note{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center}
-.progress{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:3px;padding:14px 20px 0}
+.progress{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;padding:14px 20px 0}
 .progress i{height:4px;background:var(--line)}
 .progress i.on{background:var(--accent)}
 .opts{padding:24px 20px 0;display:flex;flex-direction:column;gap:10px}
@@ -80,7 +80,7 @@ h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(30px,9.5v
   <section id="s-landing" class="screen active" aria-labelledby="h-landing">
     <div class="top"><b>DIREBORN</b><span>DOTA TYPE TEST / V1</span></div>
     <div class="pad">
-      <span class="tag">16 TIPE · 16 SOAL · ±3 MENIT</span>
+      <span class="tag">16 TIPE · 8 SOAL · ±1 MENIT</span>
       <h1 id="h-landing">Lo tuh pemain Dota yang kayak gimana?</h1>
       <p class="lead">Jawab jujur, jangan jawab versi lo pas lagi winstreak. Hasilnya: tipe lo, hero yang cocok, role, gaya main, sampai playstyle lo mirip pro player siapa.</p>
     </div>
@@ -103,7 +103,7 @@ h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(30px,9.5v
     <div class="top">
       <button class="back" id="qback" type="button" aria-label="Kembali">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>KEMBALI</span></button>
-      <span>SOAL <b id="qn">01</b> / 16</span>
+      <span>SOAL <b id="qn">01</b> / 08</span>
     </div>
     <div class="progress" id="progress" aria-hidden="true"></div>
     <div class="pad" style="gap:12px">
@@ -186,19 +186,25 @@ var QUESTIONS = [
   {d:"SN",tag:"BUILD ITEM",q:"Build item lo biasanya…",o:[["Ikutin build pro / guide terbaru",2],["Standar, sesekali adaptasi",1],["Sering improvisasi tergantung musuh",-1],["Build sendiri. Meta itu saran, bukan aturan.",-2]]},
   {d:"TF",tag:"SITUASI · TEAMMATE FEEDING",q:"Teammate lo udah mati 6 kali sebelum menit 10. Lo…",o:[["Kasih tau kesalahannya, langsung & jelas",2],["Saranin build atau posisi yang lebih aman",1],["Tanya dia oke nggak, jangan sampe tilt",-1],["Bela dia di chat. Mental tim nomor satu.",-2]]},
   {d:"JP",tag:"PRE-GAME",q:"Sebelum game mulai, lo…",o:[["Udah punya rencana lane, timing & item",2],["Ada gambaran kasar",1],["Liat draft dulu, nanti dipikirin",-1],["Rencana? Gw main ngalir aja.",-2]]},
-  {d:"EI",tag:"PUSH RANK",q:"Pilihan lo kalau mau push rank…",o:[["Party 5 bareng squad",2],["Duo sama temen yang klop",1],["Solo, kadang ajak orang",-1],["Solo queue. Nasib gw di tangan gw.",-2]]},
-  {d:"SN",tag:"PATCH BARU",q:"Patch baru keluar. Lo…",o:[["Baca patch notes detail, angka per angka",2],["Tunggu liat hero mana yang naik di pub",1],["Langsung nyobain combo aneh yang kepikiran",-1],["Bikin teori meta baru sebelum orang lain sadar",-2]]},
-  {d:"TF",tag:"SITUASI · MENIT 24:10",q:"Mau ambil fight atau nggak, lo mutusinnya dari…",o:[["Itung net worth & cooldown dulu",2],["Liat spike item tim",1],["Feeling: tim lagi panas atau nggak",-1],["Kalau temen udah masuk, gw ikut. Titik.",-2]]},
-  {d:"JP",tag:"ROSHAN",q:"Soal timer Roshan…",o:[["Gw catat tiap kali, sampe Aegis expire",2],["Inget kira-kira",1],["Tanya tim pas butuh aja",-1],["Rosh? Kapan terakhir mati ya?",-2]]},
   {d:"EI",tag:"SITUASI · MENIT 12:40",q:"Tim ketinggalan 3 kill dan semua diem. Lo…",o:[["Langsung ambil alih, mulai calling",2],["Kasih semangat dikit",1],["Fokus benerin game lo sendiri",-1],["Ikutan diem, main aja",-2]]},
   {d:"SN",tag:"LANING PHASE",q:"Pas laning, yang paling lo perhatiin…",o:[["Last hit, deny, creep aggro: detail kecil",2],["Posisi & HP musuh di lane",1],["Kapan mid bakal rotate",-1],["Gambaran besar: siapa yang menang di menit 20",-2]]},
-  {d:"TF",tag:"POST-GAME",q:"Abis kalah, yang lo lakuin…",o:[["Buka replay, cari kesalahan",2],["Cek stat & grafik net worth",1],["Curhat bareng tim",-1],["Ngehibur tim, 'next game pasti menang'",-2]]},
-  {d:"JP",tag:"SITUASI · SMOKE GAGAL",q:"Rencana smoke tim gagal total. Lo…",o:[["Regroup, balik ke rencana awal",2],["Susun ulang rencana, cepet",1],["Langsung cari peluang lain di map",-1],["Chaos adalah rencana gw",-2]]},
-  {d:"EI",tag:"ABIS MENANG",q:"Abis menang game yang susah, lo…",o:[["Teriak di voice, spam 'GG WP'",2],["Ajak satu game lagi bareng",1],["Senyum dikit, lanjut queue",-1],["Tutup game. Recharge dulu.",-2]]},
-  {d:"SN",tag:"HERO POOL",q:"Hero pool lo…",o:[["Sedikit tapi dalem, 3–4 hero andalan",2],["Hero comfort per role",1],["Lumayan luas, suka ganti-ganti",-1],["Suka nyoba hero yang jarang di-pick",-2]]},
-  {d:"TF",tag:"KEPUASAN",q:"Lo paling puas kalau…",o:[["Farm & objektif efisien maksimal",2],["Rencana tim jalan sesuai hitungan",1],["Ada save epik buat teammate",-1],["Semua orang di tim seneng, menang atau kalah",-2]]},
-  {d:"JP",tag:"MID GAME",q:"Gaya lo pas mid game…",o:[["Rute farm tetap, efisien tiap menit",2],["Pola standar, sesekali ganti",1],["Ikut ke mana peluang ada",-1],["Farm? Gw lebih suka nyari fight",-2]]}
+  {d:"TF",tag:"SITUASI · MENIT 24:10",q:"Mau ambil fight atau nggak, lo mutusinnya dari…",o:[["Itung net worth & cooldown dulu",2],["Liat spike item tim",1],["Feeling: tim lagi panas atau nggak",-1],["Kalau temen udah masuk, gw ikut. Titik.",-2]]},
+  {d:"JP",tag:"SITUASI · SMOKE GAGAL",q:"Rencana smoke tim gagal total. Lo…",o:[["Regroup, balik ke rencana awal",2],["Susun ulang rencana, cepet",1],["Langsung cari peluang lain di map",-1],["Chaos adalah rencana gw",-2]]}
 ];
+
+/* Portrait hero: /hero/<slug>.png di-proxy Vercel ke CDN resmi Dota 2 (lihat vercel.json) */
+var HERO_SLUG = {"Anti-Mage":"antimage","Medusa":"medusa","Terrorblade":"terrorblade","Morphling":"morphling","Faceless Void":"faceless_void","Phantom Lancer":"phantom_lancer","Slark":"slark","Troll Warlord":"troll_warlord","Juggernaut":"juggernaut","Invoker":"invoker","Storm Spirit":"storm_spirit","Tinker":"tinker","Pangolier":"pangolier","Void Spirit":"void_spirit","Monkey King":"monkey_king","Queen of Pain":"queenofpain","Ember Spirit":"ember_spirit","Puck":"puck","Mars":"mars","Centaur Warrunner":"centaur","Beastmaster":"beastmaster","Axe":"axe","Underlord":"abyssal_underlord","Timbersaw":"shredder","Dark Seer":"dark_seer","Batrider":"batrider","Brewmaster":"brewmaster","Earth Spirit":"earth_spirit","Tusk":"tusk","Hoodwink":"hoodwink","Rubick":"rubick","Clockwerk":"rattletrap","Snapfire":"snapfire","Mirana":"mirana","Spirit Breaker":"spirit_breaker","Nyx Assassin":"nyx_assassin","Oracle":"oracle","Dazzle":"dazzle","Shadow Demon":"shadow_demon","Io":"wisp","Lion":"lion","Disruptor":"disruptor","Crystal Maiden":"crystal_maiden","Treant Protector":"treant","Warlock":"warlock","Undying":"undying","Witch Doctor":"witch_doctor","Lich":"lich"};
+var heroCache = {};
+function loadHero(name){
+  if (heroCache[name]) return heroCache[name];
+  heroCache[name] = new Promise(function(res){
+    var im = new Image();
+    im.onload = function(){ res(im); };
+    im.onerror = function(){ res(null); };
+    im.src = "/hero/" + HERO_SLUG[name] + ".png";
+  });
+  return heroCache[name];
+}
 
 var THEMES = {
   dark:{bg:"#0D0D0B",grid:"#1C1B18",ink:"#EDE9DF",muted:"#9C978B",sub:"#C9C4B8",line:"#2A2925",ring:"#3A3833",accent:"#FF4D2E",blockBg:"#FF4D2E",blockInk:"#0D0D0B",blockMuted:"#0D0D0B"},
@@ -326,7 +332,7 @@ function fit(ctx, text, weight, family, size, maxW, min){
 }
 var ANTON = 'Anton, Impact, sans-serif', MONO = '"JetBrains Mono", monospace', INTER = 'Inter, sans-serif';
 
-function drawCard(ctx, code, th, host){
+function drawCard(ctx, code, th, host, imgs){
   var T = TYPES[code], C = THEMES[th], W = 1080, H = 1920, X = 72, R = W - 72;
   ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
   ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
@@ -391,17 +397,28 @@ function drawCard(ctx, code, th, host){
   // heroes
   var hy = 1372;
   ctx.fillStyle = C.muted; ctx.font = "400 24px " + MONO; ctx.fillText("HERO COCOK", X, hy);
-  var tw = (R - X - 36) / 3, ty = hy + 22, thh = 96;
+  var tw = (R - X - 36) / 3, ty = hy + 22, thh = 112;
   T.heroes.forEach(function(h, i){
-    var tx = X + i * (tw + 18);
-    ctx.strokeStyle = C.ring; ctx.lineWidth = 2; ctx.strokeRect(tx + 1, ty + 1, tw - 2, thh - 2);
-    ctx.fillStyle = C.muted; ctx.font = "400 18px " + MONO; ctx.fillText("H" + (i + 1), tx + 16, ty + 30);
-    ctx.fillStyle = C.ink; fit(ctx, h.toUpperCase(), "400", ANTON, 36, tw - 32, 24);
-    ctx.fillText(h.toUpperCase(), tx + 16, ty + 78);
+    var tx = X + i * (tw + 18), img = imgs && imgs[i];
+    if (img){
+      ctx.save();
+      ctx.beginPath(); ctx.rect(tx, ty, tw, thh); ctx.clip();
+      var sw = tw, sh = tw * img.naturalHeight / img.naturalWidth;
+      ctx.drawImage(img, tx, ty - Math.max(0, (sh - thh) * 0.35), sw, sh);
+      ctx.fillStyle = "rgba(13,13,11,0.78)"; ctx.fillRect(tx, ty + thh - 40, tw, 40);
+      ctx.fillStyle = "#EDE9DF"; fit(ctx, h.toUpperCase(), "400", ANTON, 26, tw - 24, 18);
+      ctx.fillText(h.toUpperCase(), tx + 12, ty + thh - 11);
+      ctx.restore();
+    } else {
+      ctx.strokeStyle = C.ring; ctx.lineWidth = 2; ctx.strokeRect(tx + 1, ty + 1, tw - 2, thh - 2);
+      ctx.fillStyle = C.muted; ctx.font = "400 18px " + MONO; ctx.fillText("H" + (i + 1), tx + 16, ty + 30);
+      ctx.fillStyle = C.ink; fit(ctx, h.toUpperCase(), "400", ANTON, 36, tw - 32, 24);
+      ctx.fillText(h.toUpperCase(), tx + 16, ty + 86);
+    }
   });
 
   // pro block
-  var by = 1520, bh = 132;
+  var by = 1530, bh = 132;
   ctx.fillStyle = C.blockBg; ctx.fillRect(X, by, R - X, bh);
   ctx.fillStyle = C.blockMuted; ctx.font = "400 24px " + MONO; ctx.fillText("PLAYSTYLE LO MIRIP", X + 32, by + 44);
   ctx.fillStyle = C.blockInk; ctx.font = "400 72px " + ANTON; ctx.fillText(T.pro, X + 32, by + 116);
@@ -414,9 +431,9 @@ function drawCard(ctx, code, th, host){
 }
 
 function render(){
-  return loadFonts().then(function(){
+  return Promise.all([loadFonts(), Promise.all(TYPES[result].heroes.map(loadHero))]).then(function(r){
     var cv = $("cv"), ctx = cv.getContext("2d");
-    drawCard(ctx, result, theme, location.host || "direborn");
+    drawCard(ctx, result, theme, location.host || "direborn", r[1]);
     return new Promise(function(res){
       cv.toBlob(function(b){
         cardBlob = b;

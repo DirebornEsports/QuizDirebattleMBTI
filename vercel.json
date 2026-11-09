@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/hero/:file",
+      "destination": "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/:file"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/hero/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, immutable" }]
+    }
+  ]
+}
