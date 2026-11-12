@@ -1,4 +1,4 @@
-# Dota Type Test — Direborn
+# Dota Type Test — Direbattle
 
 Quiz MBTI versi Dota 2: 8 soal, 16 tipe, kartu hasil 1080×1920 siap share ke IG Story.
 

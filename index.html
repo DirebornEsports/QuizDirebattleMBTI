@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dota Type Test — Direborn</title>
+<title>Dota Type Test — Direbattle</title>
 <meta name="description" content="Lo tuh pemain Dota yang kayak gimana? 8 soal, hasil tipe lo, hero & role yang cocok, stat gaya main, sampai playstyle lo mirip pro player siapa.">
-<meta name="theme-color" content="#0D0D0B">
-<meta property="og:title" content="Dota Type Test — Direborn">
+<meta name="theme-color" content="#06201D">
+<meta property="og:title" content="Dota Type Test — Direbattle">
 <meta property="og:description" content="Lo tuh pemain Dota yang kayak gimana? Tes 1 menit, hasilnya langsung bisa dishare ke Story.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,14 +14,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap">
 <style>
 :root{
-  --bg:#0D0D0B; --ink:#EDE9DF; --muted:#9C978B; --sub:#C9C4B8; --line:#2A2925; --accent:#FF4D2E;
+  --bg:#06201D; --ink:#F2FBF7; --muted:#9CC7BA; --sub:#CFE9E0; --line:#1A4A42; --accent:#3EE6B0; --gold:#E9C46A;
   --mono:'JetBrains Mono',ui-monospace,monospace; --display:Anton,Impact,sans-serif; --sans:Inter,system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-text-size-adjust:100%}
 button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.app{max-width:440px;margin:0 auto;min-height:100dvh;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+.app{max-width:440px;margin:0 auto;min-height:100dvh;background:radial-gradient(ellipse 120% 60% at 50% 30%,#0F4A40 0%,rgba(6,32,29,0) 70%);border-left:1px solid var(--line);border-right:1px solid var(--line)}
 .screen{display:none;flex-direction:column;min-height:100dvh}
 .screen.active{display:flex}
 .top{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted)}
@@ -39,7 +39,7 @@ h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(30px,9.5v
 .index span{font-family:var(--mono);color:var(--muted);width:24px}
 .grow{flex-grow:1}
 .foot{padding:20px;display:flex;flex-direction:column;gap:12px}
-.cta{display:flex;justify-content:space-between;align-items:center;width:100%;height:60px;padding:0 20px;border:0;background:var(--accent);color:var(--bg);cursor:pointer;font-family:var(--display);font-size:24px;letter-spacing:.02em;text-transform:uppercase}
+.cta{display:flex;justify-content:space-between;align-items:center;width:100%;height:60px;padding:0 20px;border:0;background:var(--gold);color:var(--bg);cursor:pointer;font-family:var(--display);font-size:24px;letter-spacing:.02em;text-transform:uppercase}
 .cta.center{justify-content:center;gap:10px;height:56px;font-size:22px}
 .note{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center}
 .progress{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;padding:14px 20px 0}
@@ -58,16 +58,16 @@ h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(30px,9.5v
 #s-result.active{position:fixed;inset:0;z-index:5;min-height:0;align-items:center;justify-content:center;background:var(--bg);transition:background .25s}
 .cardwrap{position:relative;width:min(100vw,56.25vh);aspect-ratio:9/16}
 @supports (height:100dvh){.cardwrap{width:min(100vw,56.25dvh)}}
-.cardbtn{position:relative;display:block;width:100%;height:100%;padding:0;border:0;background:#151513;cursor:pointer;overflow:hidden}
+.cardbtn{position:relative;display:block;width:100%;height:100%;padding:0;border:0;background:#0A2A26;cursor:pointer;overflow:hidden}
 .cardbtn img{display:block;width:100%;height:100%}
 .cardbtn::after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleY(0);transform-origin:top;pointer-events:none}
-.overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:16px;background:rgba(13,13,11,.84);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s}
+.overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:16px;background:rgba(6,32,29,.84);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s}
 .cardwrap.open .overlay{opacity:1;visibility:visible}
 @media (hover:hover) and (pointer:fine){.cardwrap:hover .overlay{opacity:1;visibility:visible}}
 .ohead{display:flex;justify-content:space-between;align-items:center;margin-bottom:auto}
 .ohead span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted)}
 .xbtn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:transparent;border:1px solid var(--line);cursor:pointer}
-.hint{position:absolute;left:50%;bottom:3.5%;transform:translateX(-50%);white-space:nowrap;padding:8px 12px;background:rgba(13,13,11,.82);color:var(--ink);font-family:var(--mono);font-size:10px;letter-spacing:.08em;pointer-events:none}
+.hint{position:absolute;left:50%;bottom:3.5%;transform:translateX(-50%);white-space:nowrap;padding:8px 12px;background:rgba(6,32,29,.82);color:var(--ink);font-family:var(--mono);font-size:10px;letter-spacing:.08em;pointer-events:none}
 .cardwrap.open .hint{visibility:hidden}
 @media (hover:hover) and (pointer:fine){.cardwrap:hover .hint{visibility:hidden}}
 .seg.full{width:100%}.seg.full button{flex:1}
@@ -135,7 +135,7 @@ h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(30px,9.5v
 <main class="app">
 
   <section id="s-landing" class="screen active" aria-labelledby="h-landing">
-    <div class="top"><b>DIREBORN</b><span>DOTA TYPE TEST / V1</span></div>
+    <div class="top"><b>DIREBATTLE</b><span>DOTA TYPE TEST / V1</span></div>
     <div class="pad">
       <span class="tag">16 TIPE · 8 SOAL · ±1 MENIT</span>
       <h1 id="h-landing">Lo tuh pemain Dota yang kayak gimana?</h1>
@@ -173,7 +173,7 @@ h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(30px,9.5v
   </section>
 
   <section id="s-loading" class="screen">
-    <div class="top"><b>DIREBORN</b><span>DOTA TYPE TEST</span></div>
+    <div class="top"><b>DIREBATTLE</b><span>DOTA TYPE TEST</span></div>
     <div class="loading"><div class="scr" id="scr" aria-hidden="true"><span>?</span><span>?</span><span>?</span><span>?</span></div><div class="bar"><i></i></div><span>NGITUNG HASIL LO…</span></div>
   </section>
 
@@ -266,8 +266,8 @@ function loadHero(name){
 }
 
 var THEMES = {
-  dark:{bg:"#0D0D0B",grid:"#1C1B18",ink:"#EDE9DF",muted:"#9C978B",sub:"#C9C4B8",line:"#2A2925",ring:"#3A3833",accent:"#FF4D2E",blockBg:"#FF4D2E",blockInk:"#0D0D0B",blockMuted:"#0D0D0B"},
-  light:{bg:"#EDE9DF",grid:"#DDD8CC",ink:"#0D0D0B",muted:"#5E5A52",sub:"#3E3B35",line:"#CFC9BC",ring:"#A9A396",accent:"#C8361C",blockBg:"#0D0D0B",blockInk:"#EDE9DF",blockMuted:"#9C978B"}
+  dark:{bg:"#06201D",grid:"#0C2F2A",ink:"#F2FBF7",muted:"#9CC7BA",sub:"#CFE9E0",line:"#1A4A42",ring:"#1E7F6C",accent:"#3EE6B0",blockBg:"#E9C46A",blockInk:"#06201D",blockMuted:"#06201D",glow:"#11574A"},
+  light:{bg:"#EAF7F1",grid:"#D3EADF",ink:"#06201D",muted:"#3F6B60",sub:"#23473F",line:"#B9DCCF",ring:"#7FB5A3",accent:"#0B7A66",blockBg:"#06201D",blockInk:"#F2FBF7",blockMuted:"#9CC7BA",glow:"#FFFFFF"}
 };
 
 /* ---------- STATE ---------- */
@@ -415,13 +415,16 @@ function drawCard(ctx, code, th, host, imgs){
   var T = TYPES[code], C = THEMES[th], W = 1080, H = 1920, X = 72, R = W - 72;
   ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
   ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
+  var glow = ctx.createRadialGradient(W / 2, 700, 0, W / 2, 700, 900);
+  glow.addColorStop(0, C.glow); glow.addColorStop(1, C.bg);
+  ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
   ctx.fillStyle = C.grid;
   for (var gx = 0; gx <= W; gx += 120) ctx.fillRect(gx, 0, 1, H);
   for (var gy = 0; gy <= H; gy += 120) ctx.fillRect(0, gy, W, 1);
 
   // header
   ctx.font = "700 26px " + MONO; ctx.fillStyle = C.ink;
-  ctx.fillText("DIREBORN / DOTA TYPE TEST", X, 200);
+  ctx.fillText("DIREBATTLE / DOTA TYPE TEST", X, 200);
   ctx.textAlign = "right"; ctx.font = "400 26px " + MONO; ctx.fillStyle = C.muted;
   ctx.fillText("NO. " + cardNo, R, 200); ctx.textAlign = "left";
   ctx.fillStyle = C.ink; ctx.fillRect(X, 222, R - X, 2);
@@ -484,8 +487,8 @@ function drawCard(ctx, code, th, host, imgs){
       ctx.beginPath(); ctx.rect(tx, ty, tw, thh); ctx.clip();
       var sw = tw, sh = tw * img.naturalHeight / img.naturalWidth;
       ctx.drawImage(img, tx, ty - Math.max(0, (sh - thh) * 0.35), sw, sh);
-      ctx.fillStyle = "rgba(13,13,11,0.78)"; ctx.fillRect(tx, ty + thh - 40, tw, 40);
-      ctx.fillStyle = "#EDE9DF"; fit(ctx, h.toUpperCase(), "400", ANTON, 26, tw - 24, 18);
+      ctx.fillStyle = "rgba(6,32,29,0.78)"; ctx.fillRect(tx, ty + thh - 40, tw, 40);
+      ctx.fillStyle = "#F2FBF7"; fit(ctx, h.toUpperCase(), "400", ANTON, 26, tw - 24, 18);
       ctx.fillText(h.toUpperCase(), tx + 12, ty + thh - 11);
       ctx.restore();
     } else {
@@ -506,13 +509,13 @@ function drawCard(ctx, code, th, host, imgs){
   // footer
   ctx.fillStyle = C.muted; ctx.font = "400 26px " + MONO; ctx.fillText("Tes tipe lo →", X, 1712);
   var w = ctx.measureText("Tes tipe lo → ").width; ctx.fillStyle = C.ink; ctx.fillText(host, X + w, 1712);
-  ctx.textAlign = "right"; ctx.font = "700 26px " + MONO; ctx.fillText("DIREBORN", R, 1712); ctx.textAlign = "left";
+  ctx.textAlign = "right"; ctx.font = "700 26px " + MONO; ctx.fillText("DIREBATTLE", R, 1712); ctx.textAlign = "left";
 }
 
 function render(){
   return Promise.all([loadFonts(), Promise.all(TYPES[result].heroes.map(loadHero))]).then(function(r){
     var cv = $("cv"), ctx = cv.getContext("2d");
-    drawCard(ctx, result, theme, location.host || "direborn", r[1]);
+    drawCard(ctx, result, theme, location.host || "direbattle", r[1]);
     return new Promise(function(res){
       cv.toBlob(function(b){
         cardBlob = b;
@@ -528,7 +531,7 @@ function render(){
 
 /* ---------- RESULT ACTIONS ---------- */
 function shareURL(){ return location.origin + location.pathname + "?t=" + result; }
-function shareText(){ return "Gw " + result + " · " + TYPES[result].name + " di Dota Type Test by Direborn. Lo tipe apa?"; }
+function shareText(){ return "Gw " + result + " · " + TYPES[result].name + " di Dota Type Test by Direbattle. Lo tipe apa?"; }
 function fileName(){ return "dota-type-" + result.toLowerCase() + ".png"; }
 function cardFile(){ return new File([cardBlob], fileName(), {type: "image/png"}); }
 function canShareFile(){ try { return !!(navigator.canShare && navigator.canShare({files: [cardFile()]})); } catch(e){ return false; } }
